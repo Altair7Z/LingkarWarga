@@ -3,21 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <title>LingkarWarga</title>
-
     <link rel="stylesheet" href="style/style.css" />
   </head>
   <body>
-    <header>
-      <h2>LingkarWarga</h2>
+    <header class="nav">
+      <h2 class="judul">LingkarWarga</h2>
       <nav>
-        <a href="#home">Home</a>
-        <a href="#data">Data</a>
+        <a class="nav-a" href="#home">Home</a>
+        <a class="nav-a" href="#data">Data</a>
       </nav>
     </header>
 
     <main>
-      <section id="home">
-        <h2>Beranda</h2>
+      <section id="home" class="card section-home">
+        <h2 class="jdl-card">Beranda</h2>
 
         <div>
           <iframe
@@ -29,24 +28,27 @@
           ></iframe>
         </div>
 
-        <div>
-          <p>Laporan Infrastruktur: 24</p>
-          <p>Masalah Lingkungan: 18</p>
-          <p>Aktivitas Komunitas: 12</p>
+        <div class="stat-card">
+          <p class="stat-text">
+            Laporan Infrastruktur: <span id="statusI">0</span>
+          </p>
+          <p class="stat-text">
+            Masalah Lingkungan: <span id="statusL">0</span>
+          </p>
         </div>
 
         <a href="#laporan">
-          <button>Buat Laporan Baru</button>
+          <button class="btn">Buat Laporan Baru</button>
         </a>
       </section>
 
-      <section id="data">
-        <h2>Peta Laporan</h2>
+      <section id="data" class="card section-data">
+        <h2 class="jdl-card">Peta Laporan</h2>
 
-        <button class="btn-filter" onclick="filter('Infrastruktur', this)">
+        <button class="btn btn-filter" onclick="filter('Infrastruktur', this)">
           Infrastruktur
         </button>
-        <button class="btn-filter" onclick="filter('Lingkungan', this)">
+        <button class="btn btn-filter" onclick="filter('Lingkungan', this)">
           Lingkungan
         </button>
 
@@ -60,35 +62,47 @@
           ></iframe>
         </div>
 
-        <div id="dataLaporan"></div>
+        <div id="dataLaporan" class="laporan"></div>
       </section>
 
-      <section id="laporan">
-        <h2>Buat Laporan</h2>
+      <section id="laporan" class="card section-laporan">
+        <h2 class="jdl-card">Buat Laporan</h2>
 
-        <form id="pengisian">
-          <input type="text" id="nama" placeholder="Nama Pelapor" />
+        <form id="pengisian" class="form">
+          <input
+            class="form-input"
+            type="text"
+            id="nama"
+            placeholder="Nama Pelapor"
+            required
+          />
           <br /><br />
-          <input type="text" id="judul-lap" placeholder="Judul Laporan" />
+          <input
+            class="form-input"
+            type="text"
+            id="judul-lap"
+            placeholder="Judul Laporan"
+            required
+          />
           <br /><br />
           <div class="pemilihan-kategori">
-            <select id="kategori">
+            <select id="kategori" class="form-select">
               <option value="Infrastruktur">Infrastruktur</option>
               <option value="Lingkungan">Lingkungan</option>
             </select>
-            <select id="statusInput">
+            <select id="statusInput" class="form-select">
               <option value="Diproses">Diproses</option>
               <option value="Selesai">Selesai</option>
             </select>
           </div>
           <br /><br />
-          <button id="btn-submit" type="submit">Kirim</button>
-          <button id="btn-batal" type="submit">Batal</button>
+          <button id="btn-submit" class="btn" type="submit">Kirim</button>
+          <button id="btn-batal" class="btn" type="submit">Batal</button>
         </form>
       </section>
 
-      <section>
-        <h2>Tabel Data</h2>
+      <section class="card section-table">
+        <h2 class="jdl-card">Tabel Data</h2>
         <table>
           <thead>
             <tr>

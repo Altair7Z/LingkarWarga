@@ -4,6 +4,19 @@ let edit = false;
 
 let sedangEdit = null;
 
+// tampilan statistik di home
+function statistik() {
+  const jumlahI = laporan.filter(
+    (stat) => stat.kategori === "Infrastruktur",
+  ).length;
+  const jumlahL = laporan.filter(
+    (stat) => stat.kategori === "Lingkungan",
+  ).length;
+
+  document.getElementById("statusI").innerText = jumlahI;
+  document.getElementById("statusL").innerText = jumlahL;
+}
+
 function read() {
   const listLaporan = document.getElementById("dataLaporan");
   listLaporan.innerHTML = "";
@@ -32,25 +45,30 @@ function read() {
             <td>${tbl.status}</td>
             <td>${tbl.waktu}</td>
             <td>
-                <button type="button" onclick="update('${tbl.id}')">Edit</button>
-                <button onclick="hapusLaporan('${tbl.id}')">Hapus</button>
+                <button class="btn" type="button" onclick="update('${tbl.id}')">Edit</button>
+                <button class="btn" type="button" onclick="hapusLaporan('${tbl.id}')">Hapus</button>
             </td>
         </tr>
         `;
   });
+
+  statistik();
 }
 
 // create
 let form = document.getElementById("pengisian");
-form.addEventListener("submit", (a) => {
+form.addEventListener("submit", function kirim(a) {
   a.preventDefault();
   const namaFix = document.getElementById("nama").value.toUpperCase();
+  const judul = document.getElementById("judul-lap").value;
+  const kategori = document.getElementById("kategori").value;
+  const status = document.getElementById("statusInput").value;
 
   if (edit && sedangEdit !== null) {
     sedangEdit.nama = namaFix;
-    sedangEdit.judul = document.getElementById("judul-lap").value;
-    sedangEdit.kategori = document.getElementById("kategori").value;
-    sedangEdit.status = document.getElementById("statusInput").value;
+    sedangEdit.judul = judul;
+    sedangEdit.kategori = kategori;
+    sedangEdit.status = status;
 
     alert("Perubahan di simpan");
   } else {
@@ -86,8 +104,6 @@ function update(id) {
   document.getElementById("judul-lap").value = sedangEdit.judul;
   document.getElementById("kategori").value = sedangEdit.kategori;
   document.getElementById("statusInput").value = sedangEdit.status;
-
-  sedangEdit = true;
   document.getElementById("btn-submit").innerText = "Simpan Perubahan";
   document.getElementById("btn-batal").style.display = "inline-block";
 
